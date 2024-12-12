@@ -75,10 +75,10 @@ def extract_features_from_dataset(output_folder):
             labels.append(2)
         elif 'bantidakretak' in filename:
             features.append(feature_vector)
-            labels.append(0)
+            labels.append(3)
         elif 'bantidakaus' in filename:
             features.append(feature_vector)
-            labels.append(0)
+            labels.append(4)
 
     if len(features) == 0 or len(labels) == 0:
         print("Tidak ada fitur atau label yang diekstraksi. Pastikan folder input berisi gambar yang benar.")
@@ -106,9 +106,16 @@ def train_svm(features, labels):
     print(cm)
     
     # Simpan Confusion Matrix sebagai Gambar
-    cm_image_path = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/modelsvm/confusion_matrix.png'
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Ban Bagus', 'Ban Rusak (Keretakan Samping)', 'Ban Rusak (Aus)'], yticklabels=['Ban Bagus', 'Ban Rusak (Keretakan Samping)', 'Ban Rusak (Aus)'])
+    cm_image_path = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/modelsvm/confusion_matrix_terbaru.png'
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(
+        cm, 
+        annot=True, 
+        fmt='d', 
+        cmap='Blues', 
+        xticklabels=['Ban Rusak (Keretakan Samping)', 'Ban Rusak (Aus)', 'Ban Bagus (Tidak Retak)', 'Ban Bagus (Tidak Aus)'], 
+        yticklabels=['Ban Rusak (Keretakan Samping)', 'Ban Rusak (Aus)', 'Ban Bagus (Tidak Retak)', 'Ban Bagus (Tidak Aus)']
+    )
     plt.title("Confusion Matrix")
     plt.xlabel("Prediksi")
     plt.ylabel("Sebenarnya")
@@ -116,7 +123,7 @@ def train_svm(features, labels):
     plt.close()
     
     # Simpan Model SVM
-    model_path = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/modelsvm/model_svm.pkl'
+    model_path = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/modelsvm/model_svm_terbaru.pkl'
     joblib.dump(clf, model_path)
     print(f"Model SVM disimpan di {model_path}")
 
@@ -138,9 +145,15 @@ def predict_damage(image_path, model):
     elif prediction == 2:
         print(f"Gambar {image_path} menunjukkan ban aus.")
         result_text = "Kerusakan: Ban Rusak (Aus)"
+    elif prediction == 3:
+        print(f"Gambar {image_path} menunjukkan ban aus.")
+        result_text = "Kerusakan: Ban Bagus (Tidak Retak)"
+    elif prediction == 4:
+        print(f"Gambar {image_path} menunjukkan ban aus.")
+        result_text = "Kerusakan: Ban Bagus (Tidak Aus)"
     else:
-        print(f"Gambar {image_path} menunjukkan ban bagus.")
-        result_text = "Kerusakan: Ban Bagus (Tidak Retak / Tidak Aus)"
+        print(f"Gambar {image_path} menunjukkan ban tidak diketahui.")
+        result_text = "Kerusakan: ban tidak diketahui"
     
     cv2.putText(resized_image, result_text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
     cv2.imshow("Hasil Prediksi", resized_image)
