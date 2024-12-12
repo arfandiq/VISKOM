@@ -88,14 +88,14 @@ def predict_damage(image_path, model, output_folder):
 
 if __name__ == '__main__':
     # Path ke model SVM yang sudah disimpan
-    model_path = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/modelsvm/model_svm.pkl'
+    model_path = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/modelsvm/model_svm_terbaru_banget.pkl'
 
     # Memuat model SVM
     model = joblib.load(model_path)
     print(f"Model SVM dimuat dari {model_path}")
 
     # Gambar input yang ingin diuji (gunakan path gambar tunggal)
-    image_path = '/home/arfandiqa/VISKOM/UASGLCM/DATASET/gambarbaru/dyaskotor.jpeg'  # Ganti dengan path gambar tunggal yang ingin diuji
+    image_path = '/home/arfandiqa/VISKOM/UASGLCM/DATASET/gambarbaru/jetlagi.jpeg'  # Ganti dengan path gambar tunggal yang ingin diuji
 
     # Folder untuk menyimpan hasil prediksi
     output_folder = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/hasilprogram'
