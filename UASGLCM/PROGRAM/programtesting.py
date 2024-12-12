@@ -95,7 +95,7 @@ if __name__ == '__main__':
     print(f"Model SVM dimuat dari {model_path}")
 
     # Gambar input yang ingin diuji (gunakan path gambar tunggal)
-    image_path = '/home/arfandiqa/VISKOM/UASGLCM/DATASET/gambarbaru/jetlagi.jpeg'  # Ganti dengan path gambar tunggal yang ingin diuji
+    image_path = '/home/arfandiqa/VISKOM/UASGLCM/DATASET/gambarbaru/dyaskotor.jpeg'  # Ganti dengan path gambar tunggal yang ingin diuji
 
     # Folder untuk menyimpan hasil prediksi
     output_folder = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/hasilprogram'
