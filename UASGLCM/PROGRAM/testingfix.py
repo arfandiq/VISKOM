@@ -111,7 +111,7 @@ if __name__ == '__main__':
     print(f"Model SVM dimuat dari {model_path}")
 
     # Path gambar input untuk prediksi
-    image_path = '/home/arfandiqa/VISKOM/FILEPENTING/gambartesting/bantidakretak_dataset.jpg'  # Ganti sesuai file input
+    image_path = '/home/arfandiqa/VISKOM/FILEPENTING/GAMABRTES_KELAS/bantidakaus_kelas.jpeg'  # Ganti sesuai file input
 
     # Folder untuk menyimpan hasil prediksi
     output_folder = '/home/arfandiqa/VISKOM/UASGLCM/OUTPUT/hasilprogram'
